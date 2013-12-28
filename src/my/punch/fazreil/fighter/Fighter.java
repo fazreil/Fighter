@@ -14,7 +14,19 @@ public class Fighter {
 	protected Bitmap bitmap; // the animation sequence
 	protected Rect sourceRect; // the rectangle to be drawn from the animation
 								// bitmap
-	protected int frameNr; // number of frames in animation
+	protected int frameNr; // number of fra//
+//	// the draw method which draws the corresponding frame
+//	public void draw(Canvas canvas) {
+//		// where to draw the sprite
+//		Rect destRect = new Rect(getX(), getY(), getX() + spriteWidth, getY()
+//				+ spriteHeight);
+//		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
+////		canvas.drawBitmap(bitmap, 20, 150, null);
+//		Paint paint = new Paint();
+//		paint.setARGB(50, 0, 255, 0);
+////		canvas.drawRect(20 + (currentFrame * destRect.width()), 150, 20
+////				+ (currentFrame * destRect.width()) + destRect.width(),
+////				150 + destRect.height(), paint);mes in animation
 	protected int currentFrame; // the current frame
 	protected long frameTicker; // the time of the last frame update
 	protected int framePeriod; // milliseconds between each frame (1000/fps)
@@ -25,6 +37,8 @@ public class Fighter {
 
 	protected int x; // the X coordinate of the object (top left of the image)
 	protected int y; // the Y coordinate of the object (top left of the image)
+	
+	protected boolean isWalking = false;
 
 	public Fighter() {
 
@@ -53,6 +67,18 @@ public class Fighter {
 	public void update(long gameTime) {
 		if (gameTime > frameTicker + framePeriod) {
 			frameTicker = gameTime;
+			if(isWalking)
+			{
+				if(getX()<80)
+				{
+					setX(getX()+10);
+				}
+				else
+				{
+					setX(0);
+				}
+			}
+			
 			// increment the frame
 			currentFrame++;
 			if (currentFrame >= frameNr) {
@@ -70,12 +96,12 @@ public class Fighter {
 		Rect destRect = new Rect(getX(), getY(), getX() + spriteWidth, getY()
 				+ spriteHeight);
 		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
-//		canvas.drawBitmap(bitmap, 20, 150, null);
-		Paint paint = new Paint();
-		paint.setARGB(50, 0, 255, 0);
-//		canvas.drawRect(20 + (currentFrame * destRect.width()), 150, 20
-//				+ (currentFrame * destRect.width()) + destRect.width(),
-//				150 + destRect.height(), paint);
+////		canvas.drawBitmap(bitmap, 20, 150, null);
+//		Paint paint = new Paint();
+//		paint.setARGB(50, 0, 255, 0);
+////		canvas.drawRect(20 + (currentFrame * destRect.width()), 150, 20
+////				+ (currentFrame * destRect.width()) + destRect.width(),
+////				150 + destRect.height(), paint);
 	}
 
 	public Bitmap getBitmap() {
@@ -157,5 +183,15 @@ public class Fighter {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	public boolean isWalking() {
+		return isWalking;
+	}
+
+	public void setWalking(boolean isWalking) {
+		this.isWalking = isWalking;
+	}
+	
+	
 
 }

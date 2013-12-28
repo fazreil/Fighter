@@ -26,6 +26,13 @@ public class TouchEventActions extends MainGamePanel{
 		return jc;
 	}
 	
+	public JackieChan walk(JackieChan jc)
+	{
+		Log.d("TouchEventActions","walk");
+		jc.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.jackie_walk));
+		return jc;
+	}
+	
 	
 
 }

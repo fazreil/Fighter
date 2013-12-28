@@ -15,7 +15,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
- * @author impaler
+ * original author impaler
+ * modified by @author fab
  * This is the main surface that handles the ontouch events and draws
  * the image to the screen.
  */
@@ -38,12 +39,12 @@ public class MainGamePanel extends SurfaceView implements
 		// adding the callback (this) to the surface holder to intercept events
 		getHolder().addCallback(this);
 
-		// create Elaine and load bitmap
+		// create JackieChan and load bitmap
 		jc = new JackieChan(
 				BitmapFactory.decodeResource(getResources(), R.drawable.jackie_ready) 
-				, 10, 50	// initial position
+				, 10, 10	// initial position
 				, 150, 150	// width and height of sprite
-				, 5, 7);	// FPS and number of frames in the animation
+				, 5, 7);	// FPS and number of frames in the animation		
 		
 		// create the game loop thread
 		thread = new MainThread(getHolder(), this);
@@ -85,17 +86,19 @@ public class MainGamePanel extends SurfaceView implements
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-			jc = new TouchEventActions(getContext()).transform(jc);
+			jc = new TouchEventActions(getContext()).walk(jc);
+			jc.setWalking(true);
 		}
 		if (event.getAction() == MotionEvent.ACTION_UP)
 		{
 			jc = new TouchEventActions(getContext()).stand(jc);
+			jc.setWalking(false);
 		}
 		return true;
 	}
 
 	public void render(Canvas canvas) {
-		canvas.drawColor(Color.WHITE);
+		canvas.drawColor(Color.BLACK);
 		jc.draw(canvas);
 		// display fps
 		displayFps(canvas, avgFps);
