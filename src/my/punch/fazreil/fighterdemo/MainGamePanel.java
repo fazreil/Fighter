@@ -3,7 +3,7 @@
  */
 package my.punch.fazreil.fighterdemo;
 
-import my.punch.fazreil.fighterdemo.JackieChan;
+import my.punch.fazreil.fighter.JackieChan;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -86,6 +86,10 @@ public class MainGamePanel extends SurfaceView implements
 	public boolean onTouchEvent(MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			jc = new TouchEventActions(getContext()).transform(jc);
+		}
+		if (event.getAction() == MotionEvent.ACTION_UP)
+		{
+			jc = new TouchEventActions(getContext()).stand(jc);
 		}
 		return true;
 	}

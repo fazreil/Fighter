@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-public class JackieChan {
+public class JackieChanX {
 
 	private Paint p;
 
@@ -24,11 +24,11 @@ public class JackieChan {
 	private int x; // the X coordinate of the object (top left of the image)
 	private int y; // the Y coordinate of the object (top left of the image)
 
-	public JackieChan() {
+	public JackieChanX() {
 
 	}
 
-	public JackieChan(Bitmap bitmap, int x, int y, int width, int height,
+	public JackieChanX(Bitmap bitmap, int x, int y, int width, int height,
 			int fps, int frameCount) {
 		this.bitmap = bitmap;
 		this.x = x;
