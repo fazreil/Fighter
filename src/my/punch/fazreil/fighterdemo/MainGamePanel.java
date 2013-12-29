@@ -27,6 +27,7 @@ public class MainGamePanel extends SurfaceView implements
 	
 	private MainThread thread;
 	private JackieChan jc;
+	private int moveCounter=0;
 
 	// the fps to be displayed
 	private String avgFps;
@@ -44,7 +45,7 @@ public class MainGamePanel extends SurfaceView implements
 				BitmapFactory.decodeResource(getResources(), R.drawable.jackie_ready) 
 				, 10, 10	// initial position
 				, 150, 150	// width and height of sprite
-				, 5, 7);	// FPS and number of frames in the animation		
+				, 10, 7);	// FPS and number of frames in the animation
 		
 		// create the game loop thread
 		thread = new MainThread(getHolder(), this);
@@ -88,11 +89,45 @@ public class MainGamePanel extends SurfaceView implements
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			jc = new TouchEventActions(getContext()).walk(jc);
 			jc.setWalking(true);
+
 		}
 		if (event.getAction() == MotionEvent.ACTION_UP)
 		{
-			jc = new TouchEventActions(getContext()).stand(jc);
-			jc.setWalking(false);
+
+			if(moveCounter<4){
+				moveCounter++;
+			}
+			else{
+				moveCounter=0;
+			}
+			switch(moveCounter)
+			{
+				case(0):
+				{
+					jc = new TouchEventActions(getContext()).stand(jc);
+					break;
+				}
+				case(1):
+				{
+					jc = new TouchEventActions(getContext()).punch1(jc);
+					break;
+				}
+				case(2):
+				{
+					jc = new TouchEventActions(getContext()).punch2(jc);
+					break;
+				}
+				case(3):
+				{
+					jc = new TouchEventActions(getContext()).kick1(jc);
+					break;
+				}
+				case(4):
+				{
+					jc = new TouchEventActions(getContext()).kick2(jc);
+					break;
+				}
+			}
 		}
 		return true;
 	}

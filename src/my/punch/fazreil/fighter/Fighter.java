@@ -14,19 +14,7 @@ public class Fighter {
 	protected Bitmap bitmap; // the animation sequence
 	protected Rect sourceRect; // the rectangle to be drawn from the animation
 								// bitmap
-	protected int frameNr; // number of fra//
-//	// the draw method which draws the corresponding frame
-//	public void draw(Canvas canvas) {
-//		// where to draw the sprite
-//		Rect destRect = new Rect(getX(), getY(), getX() + spriteWidth, getY()
-//				+ spriteHeight);
-//		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
-////		canvas.drawBitmap(bitmap, 20, 150, null);
-//		Paint paint = new Paint();
-//		paint.setARGB(50, 0, 255, 0);
-////		canvas.drawRect(20 + (currentFrame * destRect.width()), 150, 20
-////				+ (currentFrame * destRect.width()) + destRect.width(),
-////				150 + destRect.height(), paint);mes in animation
+	protected int frameNr; // number of frames in animation
 	protected int currentFrame; // the current frame
 	protected long frameTicker; // the time of the last frame update
 	protected int framePeriod; // milliseconds between each frame (1000/fps)
@@ -69,7 +57,7 @@ public class Fighter {
 			frameTicker = gameTime;
 			if(isWalking)
 			{
-				if(getX()<80)
+				if(getX()<120)
 				{
 					setX(getX()+10);
 				}
