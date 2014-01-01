@@ -1,8 +1,13 @@
 package my.punch.fazreil.fighterdemo;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import my.punch.fazreil.fighter.Fighter;
 import my.punch.fazreil.fighter.JackieChan;
 import my.punch.fazreil.fighter.SubZero;
 
@@ -13,17 +18,35 @@ public class TouchEventActions extends MainGamePanel{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Bitmap setFacing(Bitmap bitmap, boolean isFacingRight)
+	{
+		if(!isFacingRight)
+		{
+			bitmap = flip(bitmap);
+		}
+		return bitmap;
+	}
+	
+	Bitmap flip(Bitmap src)
+	{
+	    Matrix m = new Matrix();
+	    m.preScale(-1, 1);
+	    Bitmap dst = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), m, false);
+	    dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
+	    return dst;
+	}
+	
 	public JackieChan transform(JackieChan jc)
 	{
 		Log.d("TouchEventActions","transform");
-		jc.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), jc.TRANSFORM));
+		jc.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), jc.TRANSFORM),jc.isFacingRight()));
 		return jc;
 	}
 	
 	public JackieChan stand(JackieChan jc)
 	{
 		Log.d("TouchEventActions","stand");
-		jc.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), jc.READY));
+		jc.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), jc.READY),jc.isFacingRight()));
 		jc.setWalking(false);
 		jc.setFrameNr(7);
 		return jc;
@@ -32,7 +55,7 @@ public class TouchEventActions extends MainGamePanel{
 	public JackieChan walk(JackieChan jc)
 	{
 		Log.d("TouchEventActions","walk");
-		jc.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), jc.WALKING));
+		jc.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), jc.WALKING),jc.isFacingRight()));
 		jc.setWalking(true);
 		jc.setFrameNr(7);
 		return jc;
@@ -41,7 +64,7 @@ public class TouchEventActions extends MainGamePanel{
 	public JackieChan punch1(JackieChan jc)
 	{
 		Log.d("TouchEventActions","punch1");
-		jc.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), jc.PUNCH1));
+		jc.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), jc.PUNCH1),jc.isFacingRight()));
 		jc.setWalking(false);
 		jc.setFrameNr(4);
 		return jc;
@@ -50,7 +73,7 @@ public class TouchEventActions extends MainGamePanel{
 	public JackieChan punch2(JackieChan jc)
 	{
 		Log.d("TouchEventActions","punch2");
-		jc.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), jc.PUNCH2));
+		jc.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), jc.PUNCH2),jc.isFacingRight()));
 		jc.setWalking(false);
 		jc.setFrameNr(6);
 		return jc;
@@ -59,7 +82,7 @@ public class TouchEventActions extends MainGamePanel{
 	public JackieChan kick1(JackieChan jc)
 	{
 		Log.d("TouchEventActions","kick1");
-		jc.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), jc.KICK1));
+		jc.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), jc.KICK1),jc.isFacingRight()));
 		jc.setWalking(false);
 		jc.setFrameNr(7);
 		return jc;
@@ -68,7 +91,7 @@ public class TouchEventActions extends MainGamePanel{
 	public JackieChan kick2(JackieChan jc)
 	{
 		Log.d("TouchEventActions","kick2");
-		jc.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), jc.KICK2));
+		jc.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), jc.KICK2),jc.isFacingRight()));
 		jc.setWalking(false);
 		jc.setFrameNr(4);
 		return jc;
@@ -77,7 +100,7 @@ public class TouchEventActions extends MainGamePanel{
 	public SubZero stand(SubZero sz)
 	{
 		Log.d("TouchEventActions","subzero-stand");
-		sz.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), sz.READY));
+		sz.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), sz.READY),sz.isFacingRight()));
 		sz.setWalking(false);
 		sz.setFrameNr(7);
 		return sz;
@@ -86,7 +109,7 @@ public class TouchEventActions extends MainGamePanel{
 	public SubZero beatHigh(SubZero sz)
 	{
 		Log.d("TouchEventActions","subzero-beatHigh");
-		sz.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), sz.BEATHIGH));
+		sz.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), sz.BEATHIGH),sz.isFacingRight()));
 		sz.setWalking(false);
 		sz.setFrameNr(4);
 		return sz;
@@ -95,7 +118,7 @@ public class TouchEventActions extends MainGamePanel{
 	public SubZero beatMed(SubZero sz)
 	{
 		Log.d("TouchEventActions","subzero-beatMed");
-		sz.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), sz.BEATMED));
+		sz.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), sz.BEATMED),sz.isFacingRight()));
 		sz.setWalking(false);
 		sz.setFrameNr(4);
 		return sz;
@@ -104,7 +127,7 @@ public class TouchEventActions extends MainGamePanel{
 	public SubZero beatLow(SubZero sz)
 	{
 		Log.d("TouchEventActions","subzero-beatLow");
-		sz.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), sz.BEATLOW));
+		sz.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), sz.BEATLOW),sz.isFacingRight()));
 		sz.setWalking(false);
 		sz.setFrameNr(5);
 		return sz;

@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
 
 public class Fighter{
@@ -39,7 +41,6 @@ public class Fighter{
 
 	public Fighter(Bitmap bitmap, int x, int y, int width, int height,
 			int fps, int frameCount, boolean isFacingRight) {
-		this.bitmap = bitmap;
 		this.x = x;
 		this.y = y;
 		currentFrame = 0;
@@ -49,7 +50,26 @@ public class Fighter{
 		sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
 		framePeriod = 1000 / fps;
 		frameTicker = 0l;
-		isFacingRight = isFacingRight;
+		this.isFacingRight = isFacingRight;
+		this.bitmap = setFacing(bitmap,this.isFacingRight);
+	}
+	
+	public Bitmap setFacing(Bitmap bitmap, boolean isFacingRight)
+	{
+		if(!isFacingRight)
+		{
+			bitmap = flip(bitmap);
+		}
+		return bitmap;
+	}
+	
+	Bitmap flip(Bitmap src)
+	{
+	    Matrix m = new Matrix();
+	    m.preScale(-1, 1);
+	    Bitmap dst = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), m, false);
+	    dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
+	    return dst;
 	}
 
 	public String toString()
@@ -74,13 +94,22 @@ public class Fighter{
 			}
 			
 			// increment the frame
+			
 			currentFrame++;
 			if (currentFrame >= frameNr) {
 				currentFrame = 0;
 			}
 		}
-		// define the rectangle to cut out sprite
-		this.sourceRect.left = currentFrame * spriteWidth;
+		if(isFacingRight)
+		{
+			// define the rectangle to cut out sprite
+			this.sourceRect.left = currentFrame * spriteWidth;
+		}
+		else
+		{
+			// define the rectangle to cut out sprite
+			this.sourceRect.left = ((frameNr -1) - currentFrame) * spriteWidth;
+		}
 		this.sourceRect.right = this.sourceRect.left + spriteWidth;
 	}
 
@@ -90,16 +119,8 @@ public class Fighter{
 		Rect destRect = new Rect(getX(), getY(), getX() + spriteWidth, getY()
 				+ spriteHeight);
 		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
-		//facing left or right
-		if(isFacingRight)
-		{
-			p = new Paint();
-			p.setColor(Color.RED);
-			String display = this.toString()+" facing right";
-			canvas.drawText(display, 0, display.length(), 0, 150, p);
-		}
 	}
-
+	
 	public Bitmap getBitmap() {
 		return bitmap;
 	}
