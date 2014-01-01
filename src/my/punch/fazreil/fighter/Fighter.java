@@ -1,12 +1,16 @@
 package my.punch.fazreil.fighter;
 
+import my.punch.fazreil.fighterdemo.MainGamePanel;
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.DisplayMetrics;
 
-public class Fighter {
-
+public class Fighter{
+	
 	protected final String NAME = "Default Fighter";
 	
 	protected Paint p;
@@ -22,6 +26,7 @@ public class Fighter {
 	protected int spriteWidth; // the width of the sprite to calculate the cut out
 								// rectangle
 	protected int spriteHeight; // the height of the sprite
+	protected boolean isFacingRight = true;
 
 	protected int x; // the X coordinate of the object (top left of the image)
 	protected int y; // the Y coordinate of the object (top left of the image)
@@ -29,11 +34,11 @@ public class Fighter {
 	protected boolean isWalking = false;
 
 	public Fighter() {
-
+		
 	}
 
 	public Fighter(Bitmap bitmap, int x, int y, int width, int height,
-			int fps, int frameCount) {
+			int fps, int frameCount, boolean isFacingRight) {
 		this.bitmap = bitmap;
 		this.x = x;
 		this.y = y;
@@ -44,6 +49,7 @@ public class Fighter {
 		sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
 		framePeriod = 1000 / fps;
 		frameTicker = 0l;
+		isFacingRight = isFacingRight;
 	}
 
 	public String toString()
@@ -84,12 +90,14 @@ public class Fighter {
 		Rect destRect = new Rect(getX(), getY(), getX() + spriteWidth, getY()
 				+ spriteHeight);
 		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
-////		canvas.drawBitmap(bitmap, 20, 150, null);
-//		Paint paint = new Paint();
-//		paint.setARGB(50, 0, 255, 0);
-////		canvas.drawRect(20 + (currentFrame * destRect.width()), 150, 20
-////				+ (currentFrame * destRect.width()) + destRect.width(),
-////				150 + destRect.height(), paint);
+		//facing left or right
+		if(isFacingRight)
+		{
+			p = new Paint();
+			p.setColor(Color.RED);
+			String display = this.toString()+" facing right";
+			canvas.drawText(display, 0, display.length(), 0, 150, p);
+		}
 	}
 
 	public Bitmap getBitmap() {
@@ -179,6 +187,15 @@ public class Fighter {
 	public void setWalking(boolean isWalking) {
 		this.isWalking = isWalking;
 	}
+
+	public boolean isFacingRight() {
+		return isFacingRight;
+	}
+
+	public void setFacingRight(boolean isFacingRight) {
+		this.isFacingRight = isFacingRight;
+	}
+	
 	
 	
 

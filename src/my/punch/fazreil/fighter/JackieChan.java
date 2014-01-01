@@ -1,73 +1,25 @@
 package my.punch.fazreil.fighter;
 
+import my.punch.fazreil.fighterdemo.R;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-public class JackieChan extends Fighter {
+public class JackieChan extends Fighter{
 
 	final String NAME = "JackieChan";
-	
-	public JackieChan() {
+	public final int KICK1 = R.drawable.jackie_kick1;
+	public final int KICK2 = R.drawable.jackie_kick2;
+	public final int WALKING = R.drawable.jackie_walk;
+	public final int READY = R.drawable.jackie_ready;
+	public final int PUNCH1 = R.drawable.jackie_punch1;
+	public final int PUNCH2 = R.drawable.jackie_punch2;
+	public final int TRANSFORM = R.drawable.jackie_ready2;
 
+	public JackieChan(Bitmap decodeResource, int i, int j, int k, int l, int m,
+			int n, boolean b) {
+		// TODO Auto-generated constructor stub
+		super(decodeResource,i,j,k,l,m,n,b);
 	}
-
-	public JackieChan(Bitmap bitmap, int x, int y, int width, int height,
-			int fps, int frameCount) {
-		this.bitmap = bitmap;
-		this.x = x;
-		this.y = y;
-		currentFrame = 0;
-		frameNr = frameCount;
-		spriteWidth = bitmap.getWidth() / frameCount;
-		spriteHeight = bitmap.getHeight();
-		sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
-		framePeriod = 1000 / fps;
-		frameTicker = 0l;
-	}
-	
-	public JackieChan(Bitmap bitmap, int x, int y, int width, int height, int spriteStartX, int spriteStartY,
-			int fps, int frameCount) {
-		this.bitmap = bitmap;
-		this.x = x;
-		this.y = y;
-		currentFrame = 0;
-		frameNr = frameCount;
-		spriteWidth = width;
-		spriteHeight = height;
-		
-		sourceRect = new Rect(spriteStartX, spriteStartY, spriteWidth, spriteHeight);
-		framePeriod = 1000 / fps;
-		frameTicker = 0l;
-	}
-
-//	// the update method for JackieChan
-//	public void update(long gameTime) {
-//		if (gameTime > frameTicker + framePeriod) {
-//			frameTicker = gameTime;
-//			// increment the frame
-//			currentFrame++;
-//			if (currentFrame >= frameNr) {
-//				currentFrame = 0;
-//			}
-//		}
-//		// define the rectangle to cut out sprite
-//		this.sourceRect.left = currentFrame * spriteWidth;
-//		this.sourceRect.right = this.sourceRect.left + spriteWidth;
-//	}
-//
-//	// the draw method which draws the corresponding frame
-//	public void draw(Canvas canvas) {
-//		// where to draw the sprite
-//		Rect destRect = new Rect(getX(), getY(), getX() + spriteWidth, getY()
-//				+ spriteHeight);
-//		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
-////		canvas.drawBitmap(bitmap, 20, 150, null);
-//		Paint paint = new Paint();
-//		paint.setARGB(50, 0, 255, 0);
-////		canvas.drawRect(20 + (currentFrame * destRect.width()), 150, 20
-////				+ (currentFrame * destRect.width()) + destRect.width(),
-////				150 + destRect.height(), paint);
-//	}
 }
