@@ -28,6 +28,8 @@ public class Fighter{
 	protected int spriteHeight; // the height of the sprite
 	protected boolean isFacingRight = true;
 
+	protected int spawnX; //original sprite spawn point x coordinate
+	protected int spawnY; //original sprite spawn point y coordinate
 	protected int x; // the X coordinate of the object (top left of the image)
 	protected int y; // the Y coordinate of the object (top left of the image)
 	
@@ -40,7 +42,9 @@ public class Fighter{
 	public Fighter(Bitmap bitmap, int x, int y, int width, int height,
 			int fps, int frameCount, boolean isFacingRight) {
 		this.x = x;
+		this.spawnX = x;
 		this.y = y;
+		this.spawnY = y;
 		currentFrame = 0;
 		frameNr = frameCount;
 		spriteWidth = bitmap.getWidth() / frameCount;
@@ -81,13 +85,21 @@ public class Fighter{
 			frameTicker = gameTime;
 			if(isWalking)
 			{
-				if(getX()<120)
+				if(Math.abs(spawnX-getX())<120)
 				{
-					setX(getX()+10);
+					if(isFacingRight())
+					{
+						setX(getX()+10);
+					}
+					else
+					{
+						setX(getX()-10);
+					}
+					
 				}
 				else
 				{
-					setX(0);
+					setX(spawnX);
 				}
 			}
 			

@@ -51,6 +51,7 @@ public class MoveTestGamePanel extends GamePanel {
 			jc = new TouchEventActions(getContext()).walk(jc);
 			subZero = new TouchEventActions(getContext()).stand(subZero);
 			jc.setWalking(true);
+			subZero.setWalking(true);
 	
 		}
 		if (event.getAction() == MotionEvent.ACTION_UP)

@@ -27,9 +27,6 @@ public class GamePanel extends SurfaceView implements
 	private static final String TAG = GamePanel.class.getSimpleName();
 	
 	protected MainThread thread;
-//	private JackieChan jc;
-//	private SubZero subZero;
-//	private int moveCounter=0;
 
 	// the fps to be displayed
 	protected String avgFps;
