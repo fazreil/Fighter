@@ -8,7 +8,6 @@ import android.graphics.Rect;
 
 public class JackieChan extends Fighter{
 
-	final String NAME = "JackieChan";
 	public final int KICK1 = R.drawable.jackie_kick1;
 	public final int KICK2 = R.drawable.jackie_kick2;
 	public final int WALKING = R.drawable.jackie_walk;
@@ -21,5 +20,6 @@ public class JackieChan extends Fighter{
 			int n, boolean b) {
 		// TODO Auto-generated constructor stub
 		super(decodeResource,i,j,k,l,m,n,b);
+		NAME = "Jackie Chan";
 	}
 }

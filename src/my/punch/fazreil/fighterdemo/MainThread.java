@@ -21,7 +21,7 @@ public class MainThread extends Thread {
 	private static final String TAG = MainThread.class.getSimpleName();
 	
 	// desired fps
-	private final static int 	MAX_FPS = 50;	
+	private final static int 	MAX_FPS = 30;	
 	// maximum number of frames to be skipped
 	private final static int	MAX_FRAME_SKIPS = 5;	
 	// the frame period
@@ -55,7 +55,7 @@ public class MainThread extends Thread {
 	private SurfaceHolder surfaceHolder;
 	// The actual view that handles inputs
 	// and draws to the surface
-	private MainGamePanel gamePanel;
+	private GamePanel gamePanel;
 
 	// flag to hold game state 
 	private boolean running;
@@ -63,7 +63,7 @@ public class MainThread extends Thread {
 		this.running = running;
 	}
 
-	public MainThread(SurfaceHolder surfaceHolder, MainGamePanel gamePanel) {
+	public MainThread(SurfaceHolder surfaceHolder, GamePanel gamePanel) {
 		super();
 		this.surfaceHolder = surfaceHolder;
 		this.gamePanel = gamePanel;

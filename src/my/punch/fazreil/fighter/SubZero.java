@@ -6,7 +6,6 @@ import android.graphics.Rect;
 
 public class SubZero extends Fighter{
 
-	final String NAME = "Sub-Zero";
 	public final int WALKING = R.drawable.subzero_walk;
 	public final int READY = R.drawable.subzero_walk;
 	public final int BEATHIGH = R.drawable.subzero_beathigh;
@@ -17,5 +16,6 @@ public class SubZero extends Fighter{
 			int n, boolean b) {
 		// TODO Auto-generated constructor stub
 		super(decodeResource,i,j,k,l,m,n,b);
+		NAME = "Sub Zero";
 	}
 }

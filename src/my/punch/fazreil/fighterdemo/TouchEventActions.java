@@ -6,7 +6,7 @@ import android.util.Log;
 import my.punch.fazreil.fighter.JackieChan;
 import my.punch.fazreil.fighter.SubZero;
 
-public class TouchEventActions extends MainGamePanel{
+public class TouchEventActions extends GamePanel{
 
 	public TouchEventActions(Context context) {
 		super(context);

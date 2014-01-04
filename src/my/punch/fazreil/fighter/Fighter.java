@@ -8,7 +8,7 @@ import android.graphics.Rect;
 
 public class Fighter{
 	
-	protected static String NAME = "Default Fighter";
+	protected String NAME = "Default Fighter";
 	
 	protected Paint p;
 
@@ -88,7 +88,7 @@ public class Fighter{
 				+ spriteHeight);
 		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
 		//facing left or right
-		if(isFacingRight)
+		if(!isFacingRight)
 		{
 			p = new Paint();
 			p.setColor(Color.RED);
