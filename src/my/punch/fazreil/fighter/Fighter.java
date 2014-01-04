@@ -1,17 +1,14 @@
 package my.punch.fazreil.fighter;
 
-import my.punch.fazreil.fighterdemo.MainGamePanel;
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.DisplayMetrics;
 
 public class Fighter{
 	
-	protected final String NAME = "Default Fighter";
+	protected static String NAME = "Default Fighter";
 	
 	protected Paint p;
 
@@ -49,7 +46,7 @@ public class Fighter{
 		sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
 		framePeriod = 1000 / fps;
 		frameTicker = 0l;
-		isFacingRight = isFacingRight;
+		this.isFacingRight = isFacingRight;
 	}
 
 	public String toString()
