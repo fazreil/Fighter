@@ -3,6 +3,9 @@
  */
 package my.punch.fazreil.fighterdemo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import my.punch.fazreil.fighter.JackieChan;
 import my.punch.fazreil.fighter.SubZero;
 import android.content.Context;
@@ -27,6 +30,9 @@ public class GamePanel extends SurfaceView implements
 	private static final String TAG = GamePanel.class.getSimpleName();
 	
 	protected MainThread thread;
+	
+	protected static List goodGuys;
+	protected static List badGuys;
 
 	// the fps to be displayed
 	protected String avgFps;
@@ -94,5 +100,23 @@ public class GamePanel extends SurfaceView implements
 	public void update() {
 		
 	}
+
+	public List getGoodGuys() {
+		return goodGuys;
+	}
+
+	public void setGoodGuys(List goodGuys) {
+		this.goodGuys = goodGuys;
+	}
+
+	public List getBadGuys() {
+		return badGuys;
+	}
+
+	public void setBadGuys(List badGuys) {
+		this.badGuys = badGuys;
+	}
+	
+	
 
 }

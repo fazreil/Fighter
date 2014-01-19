@@ -26,7 +26,7 @@ public class MoveTestGamePanel extends GamePanel {
 				,160, 10
 				,150, 150
 				, 10, 7
-				,false
+				,false,this
 				);
 
 		// create JackieChan and load bitmap
@@ -35,7 +35,7 @@ public class MoveTestGamePanel extends GamePanel {
 				, 10, 10	// initial position
 				, 150, 150	// width and height of sprite
 				, 10, 7     // FPS and number of frames in the animation
-				, true);
+				, true,this);
 		
 		
 		// create the game loop thread

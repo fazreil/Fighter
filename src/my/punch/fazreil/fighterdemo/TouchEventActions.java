@@ -1,13 +1,11 @@
 package my.punch.fazreil.fighterdemo;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import my.punch.fazreil.fighter.Fighter;
 import my.punch.fazreil.fighter.JackieChan;
 import my.punch.fazreil.fighter.SubZero;
 
@@ -98,6 +96,15 @@ public class TouchEventActions extends GamePanel{
 	}
 	
 	public SubZero stand(SubZero sz)
+	{
+		Log.d("TouchEventActions","subzero-stand");
+		sz.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), sz.READY),sz.isFacingRight()));
+		sz.setWalking(false);
+		sz.setFrameNr(7);
+		return sz;
+	}
+	
+	public SubZero walk(SubZero sz)
 	{
 		Log.d("TouchEventActions","subzero-stand");
 		sz.setBitmap(setFacing(BitmapFactory.decodeResource(getContext().getResources(), sz.READY),sz.isFacingRight()));

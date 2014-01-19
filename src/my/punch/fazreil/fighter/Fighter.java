@@ -1,13 +1,20 @@
 package my.punch.fazreil.fighter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import my.punch.fazreil.fighterdemo.GamePanel;
+import my.punch.fazreil.fighterdemo.InteractionTestGamePanel;
+
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 public class Fighter{
 	
@@ -27,20 +34,28 @@ public class Fighter{
 								// rectangle
 	protected int spriteHeight; // the height of the sprite
 	protected boolean isFacingRight = true;
+	protected int collisionPoint;
 
 	protected int spawnX; //original sprite spawn point x coordinate
 	protected int spawnY; //original sprite spawn point y coordinate
 	protected int x; // the X coordinate of the object (top left of the image)
 	protected int y; // the Y coordinate of the object (top left of the image)
 	
+	protected boolean onComboAnimation = false;
+	protected int comboAnimationFrame = 0;
+	
+	protected GamePanel panel;
+	
 	protected boolean isWalking = false;
+	
+	private List<HitListener> listeners = new ArrayList<HitListener>();
 
 	public Fighter() {
 		
 	}
 
 	public Fighter(Bitmap bitmap, int x, int y, int width, int height,
-			int fps, int frameCount, boolean isFacingRight) {
+			int fps, int frameCount, boolean isFacingRight, GamePanel panel) {
 		this.x = x;
 		this.spawnX = x;
 		this.y = y;
@@ -54,6 +69,7 @@ public class Fighter{
 		frameTicker = 0l;
 		this.isFacingRight = isFacingRight;
 		this.bitmap = setFacing(bitmap,isFacingRight);
+		this.panel = panel;
 	}
 	
 	public Bitmap setFacing(Bitmap bitmap, boolean isFacingRight)
@@ -79,32 +95,12 @@ public class Fighter{
 		return NAME;
 	}
 	
-	// the update method for JackieChan
 	public void update(long gameTime) {
 		if (gameTime > frameTicker + framePeriod) {
 			frameTicker = gameTime;
-			if(isWalking)
-			{
-				if(Math.abs(spawnX-getX())<120)
-				{
-					if(isFacingRight())
-					{
-						setX(getX()+10);
-					}
-					else
-					{
-						setX(getX()-10);
-					}
-					
-				}
-				else
-				{
-					setX(spawnX);
-				}
-			}
 			
+			activity();
 			// increment the frame
-			
 			currentFrame++;
 			if (currentFrame >= frameNr) {
 				currentFrame = 0;
@@ -122,7 +118,90 @@ public class Fighter{
 		}
 		this.sourceRect.right = this.sourceRect.left + spriteWidth;
 	}
-
+	
+	public void activity()
+	{
+		walk();
+	}
+	
+	public void walk()
+	{
+		if(isWalking)
+		{
+			if(Math.abs(spawnX-getX())<120)
+			{
+				if(isFacingRight())
+				{
+					setX(getX()+10);
+				}
+				else
+				{
+					setX(getX()-10);
+				}
+				
+			}
+			else
+			{
+				if(onComboAnimation)
+				{
+					setX(getX());
+					comboAnimationFrame--;
+					if(comboAnimationFrame<0)
+					{
+						onComboAnimation = false;
+					}
+				}
+				else
+				{
+					resetToSpawnPoint();
+				}
+			}
+		}
+	}
+	
+	public void resetToSpawnPoint()
+	{
+		setToWalk(panel.getResources());
+		setX(spawnX);
+	}
+	
+	public void setToWalk(Resources res){
+		
+	}
+	
+	public void addCollisionListener(HitListener hitlistener)
+	{
+		listeners.add(hitlistener);
+	}
+	
+	public void removeCollisionListener(Fighter fighter)
+	{
+		for(HitListener listener : listeners)
+		{
+			if(listener.getActor() == fighter)
+			{
+				listeners.remove(listener);
+			}
+		}
+	}
+	
+	public void isCollide()
+	{
+		for(HitListener listener : listeners)
+		{
+			Fighter actor = (Fighter)listener.getActor();
+			if(this.isWalking())
+			{
+				if(getX()+collisionPoint>actor.getX())
+				{
+					Log.d("Jackie","x:"+getX()+", y"+getY());
+					Log.d("Enemy", "x:"+actor.getX()+", y"+actor.getY());
+					listener.onCollision(actor,this);
+				}
+			}
+		}
+	}
+	
 	// the draw method which draws the corresponding frame
 	public void draw(Canvas canvas) {
 		// where to draw the sprite
@@ -140,6 +219,22 @@ public class Fighter{
 		}
 	}
 	
+	public int getComboAnimationFrame() {
+		return comboAnimationFrame;
+	}
+
+	public void setComboAnimationFrame(int comboAnimationFrame) {
+		this.comboAnimationFrame = comboAnimationFrame;
+	}
+	
+	public boolean isOnComboAnimation() {
+		return onComboAnimation;
+	}
+
+	public void setOnComboAnimation(boolean onComboAnimation) {
+		this.onComboAnimation = onComboAnimation;
+	}
+
 	public Bitmap getBitmap() {
 		return bitmap;
 	}
