@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="demoList">
+        <item>Moves Demo</item>
+        <item>Collision Demo</item>
+        <item>Tap Count Demo</item>
+    </string-array>
+</resources>

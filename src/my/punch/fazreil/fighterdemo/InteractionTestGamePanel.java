@@ -60,7 +60,6 @@ public class InteractionTestGamePanel extends GamePanel {
 			Log.d("TEA","touched");
 			//stopStart();
 			hitCounter++;
-			
 		}
 		return true;
 	}

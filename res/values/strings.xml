@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="jackieChan">Jackie Chan</string>
     <string name="title_activity_demo_choice">DemoChoiceActivity</string>
+    <string name="title_activity_demo">DemoActivity</string>
 
 </resources>

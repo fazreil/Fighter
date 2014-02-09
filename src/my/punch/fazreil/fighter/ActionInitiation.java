@@ -2,7 +2,6 @@ package my.punch.fazreil.fighter;
 
 import android.util.Log;
 import my.punch.fazreil.fighterdemo.InteractionTestGamePanel;
-import my.punch.fazreil.fighterdemo.TouchEventActions;
 
 public class ActionInitiation implements HitListener {
 	
@@ -26,8 +25,9 @@ public class ActionInitiation implements HitListener {
 		int animationFrames = drawCombo(panel.getHitCounter(),(JackieChan)goodGuy,(SubZero)badGuy);
 		if(this.potentialFighterGettingHit == badGuy)
 		{
+			Log.d("HIT", "removing from badguys list:"+potentialFighterGettingHit.toString());
 			panel.getBadGuys().remove(potentialFighterGettingHit);
-			Log.d("HIT", potentialFighterGettingHit.toString());
+			Log.d("HIT", "remved from badguys list:"+potentialFighterGettingHit.toString());
 			onHit(potentialFighterGettingHit);
 			potentialFighterGettingHit.setOnComboAnimation(true);
 			potentialFighterGettingHit.setComboAnimationFrame(animationFrames);
@@ -66,6 +66,12 @@ public class ActionInitiation implements HitListener {
 		return potentialFighterGettingHit;
 	}
 	
-	
+	public Fighter getPotentialFighterGettingHit()
+	{
+		return potentialFighterGettingHit;
+	}
 
+	public void setPotentialFighterGettingHit(Fighter potentialFighterGettingHit){
+		this.potentialFighterGettingHit = potentialFighterGettingHit;
+	}
 }

@@ -29,7 +29,6 @@ public class SubZero extends Fighter{
 	@Override
 	public void setToWalk(Resources res){
 		this.bitmap = setFacing(BitmapFactory.decodeResource(res, WALKING),isFacingRight);
-				//BitmapFactory.decodeResource(res, WALKING);
 		this.setFrameNr(WALKING_FRAME);
 		this.isFacingRight=false;
 	}
