@@ -1,5 +1,10 @@
-package my.punch.fazreil.fighterdemo;
+package my.punch.fazreil.fighterdemo.activity;
 
+import my.punch.fazreil.fighterdemo.R;
+import my.punch.fazreil.fighterdemo.R.array;
+import my.punch.fazreil.fighterdemo.R.id;
+import my.punch.fazreil.fighterdemo.R.layout;
+import my.punch.fazreil.fighterdemo.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -50,14 +55,12 @@ public class DemoChoiceActivity extends Activity implements OnItemSelectedListen
 		Intent toOpen = new Intent();
 		switch(position){
 			case(1):{
-//				toOpen = new Intent(DemoActivity.class.getName());
-				toOpen.setClass(this, DemoActivity.class);
+				toOpen.setClass(this, MoveDemoActivity.class);
 				startActivity(toOpen);
 			}
 			break;
 			case(2):{
-//				toOpen = new Intent(MainActivity.class.getName());
-				toOpen.setClass(this, MainActivity.class);
+				toOpen.setClass(this, CollisionDemoActivity.class);
 				startActivity(toOpen);
 			}
 			break;

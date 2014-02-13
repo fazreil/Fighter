@@ -1,13 +1,14 @@
 /**
  * 
  */
-package my.punch.fazreil.fighterdemo;
+package my.punch.fazreil.fighterdemo.panel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import my.punch.fazreil.fighter.JackieChan;
 import my.punch.fazreil.fighter.SubZero;
+import my.punch.fazreil.fighterdemo.MainThread;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;

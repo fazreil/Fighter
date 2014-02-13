@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import my.punch.fazreil.fighter.JackieChan;
 import my.punch.fazreil.fighter.SubZero;
+import my.punch.fazreil.fighterdemo.panel.GamePanel;
 
 public class TouchEventActions extends GamePanel{
 

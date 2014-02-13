@@ -1,7 +1,7 @@
 package my.punch.fazreil.fighter;
 
-import my.punch.fazreil.fighterdemo.GamePanel;
 import my.punch.fazreil.fighterdemo.R;
+import my.punch.fazreil.fighterdemo.panel.GamePanel;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,7 +25,7 @@ public class SubZero extends Fighter{
 		super(decodeResource,i,j,k,l,m,n,b,panel);
 		NAME = "Sub Zero";
 	}
-	
+
 	@Override
 	public void setToWalk(Resources res){
 		this.bitmap = setFacing(BitmapFactory.decodeResource(res, WALKING),isFacingRight);

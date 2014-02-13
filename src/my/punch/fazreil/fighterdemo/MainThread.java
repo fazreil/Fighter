@@ -5,6 +5,8 @@ package my.punch.fazreil.fighterdemo;
 
 import java.text.DecimalFormat;
 
+import my.punch.fazreil.fighterdemo.panel.GamePanel;
+
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;

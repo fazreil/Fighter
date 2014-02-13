@@ -3,8 +3,7 @@ package my.punch.fazreil.fighter;
 import java.util.ArrayList;
 import java.util.List;
 
-import my.punch.fazreil.fighterdemo.GamePanel;
-import my.punch.fazreil.fighterdemo.InteractionTestGamePanel;
+import my.punch.fazreil.fighterdemo.panel.GamePanel;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -43,6 +42,10 @@ public class Fighter{
 	
 	protected boolean onComboAnimation = false;
 	protected int comboAnimationFrame = 0;
+	
+	protected int coolingPeriod = 0;
+
+	private boolean seen = false;
 	
 	protected GamePanel panel;
 	
@@ -122,6 +125,8 @@ public class Fighter{
 	public void activity()
 	{
 		walk();
+		this.setSeen(true);
+		
 	}
 	
 	public void walk()
@@ -180,9 +185,14 @@ public class Fighter{
 		{
 			if(listener.getActor() == fighter)
 			{
-				listeners.remove(listener);
+				listeners.remove(listener);fighter.setSeen(false);
 			}
 		}
+	}
+	
+	public List<HitListener> getCollisionListener()
+	{
+		return listeners;
 	}
 	
 	public void isCollide()
@@ -332,6 +342,24 @@ public class Fighter{
 	}
 	
 	
-	
+	public boolean isSeen() {
+		return seen;
+	}
 
+	public void setSeen(boolean seen) {
+		this.seen = seen;
+	}
+
+	public int getCoolingPeriod() {
+		return coolingPeriod;
+	}
+
+	public void setCoolingPeriod(int coolingPeriod) {
+		this.coolingPeriod = coolingPeriod;
+	}
+	
+	public void decCoolingPeriod()
+	{
+		this.coolingPeriod = this.coolingPeriod -1;
+	}
 }

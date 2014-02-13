@@ -1,7 +1,11 @@
-package my.punch.fazreil.fighterdemo;
+package my.punch.fazreil.fighterdemo.panel;
 
 import my.punch.fazreil.fighter.JackieChan;
 import my.punch.fazreil.fighter.SubZero;
+import my.punch.fazreil.fighterdemo.MainThread;
+import my.punch.fazreil.fighterdemo.R;
+import my.punch.fazreil.fighterdemo.TouchEventActions;
+import my.punch.fazreil.fighterdemo.R.drawable;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;

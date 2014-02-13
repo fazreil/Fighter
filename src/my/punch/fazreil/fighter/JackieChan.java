@@ -1,7 +1,7 @@
 package my.punch.fazreil.fighter;
 
-import my.punch.fazreil.fighterdemo.GamePanel;
 import my.punch.fazreil.fighterdemo.R;
+import my.punch.fazreil.fighterdemo.panel.GamePanel;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

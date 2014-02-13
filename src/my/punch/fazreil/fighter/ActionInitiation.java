@@ -1,7 +1,7 @@
 package my.punch.fazreil.fighter;
 
 import android.util.Log;
-import my.punch.fazreil.fighterdemo.InteractionTestGamePanel;
+import my.punch.fazreil.fighterdemo.panel.InteractionTestGamePanel;
 
 public class ActionInitiation implements HitListener {
 	
@@ -13,6 +13,7 @@ public class ActionInitiation implements HitListener {
 	public ActionInitiation(InteractionTestGamePanel panel, Fighter fighter){
 		ActionInitiation.panel = panel;
 		this.potentialFighterGettingHit = fighter;
+		fighter.setSeen(true);
 	}
 	
 	@Override
@@ -21,8 +22,10 @@ public class ActionInitiation implements HitListener {
 		this.badGuy=badGuy;
 		goodGuy.removeCollisionListener(badGuy);
 		Log.d("HIT", "Hit: "+panel.getHitCounter());
+//		Toast.makeText(panel.getContext(), "Hit:"+panel.getHitCounter(), Toast.LENGTH_SHORT).show();
 		//TODO draw out combo based on hitCounter
 		int animationFrames = drawCombo(panel.getHitCounter(),(JackieChan)goodGuy,(SubZero)badGuy);
+		badGuy.setCoolingPeriod(badGuy.getFramePeriod());
 		if(this.potentialFighterGettingHit == badGuy)
 		{
 			Log.d("HIT", "removing from badguys list:"+potentialFighterGettingHit.toString());
@@ -32,6 +35,9 @@ public class ActionInitiation implements HitListener {
 			potentialFighterGettingHit.setOnComboAnimation(true);
 			potentialFighterGettingHit.setComboAnimationFrame(animationFrames);
 			potentialFighterGettingHit.activity();
+		}
+		else{
+			//maybe another badguy.
 		}
 		goodGuy.activity();
 		panel.setHitCounter(0);
