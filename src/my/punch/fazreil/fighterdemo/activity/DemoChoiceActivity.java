@@ -1,10 +1,6 @@
 package my.punch.fazreil.fighterdemo.activity;
 
 import my.punch.fazreil.fighterdemo.R;
-import my.punch.fazreil.fighterdemo.R.array;
-import my.punch.fazreil.fighterdemo.R.id;
-import my.punch.fazreil.fighterdemo.R.layout;
-import my.punch.fazreil.fighterdemo.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -54,6 +50,11 @@ public class DemoChoiceActivity extends Activity implements OnItemSelectedListen
 		Log.d("SPINNER", "selected "+position+ ", id:"+id);
 		Intent toOpen = new Intent();
 		switch(position){
+		
+			case(0):{
+				
+			}
+			break;
 			case(1):{
 				toOpen.setClass(this, MoveDemoActivity.class);
 				startActivity(toOpen);

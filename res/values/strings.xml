@@ -7,5 +7,7 @@
     <string name="jackieChan">Jackie Chan</string>
     <string name="title_activity_demo_choice">DemoChoiceActivity</string>
     <string name="title_activity_demo">DemoActivity</string>
+    <string name="title_activity_combo_linking">ComboLinking</string>
+    <string name="title_activity_game">Game</string>
 
 </resources>
