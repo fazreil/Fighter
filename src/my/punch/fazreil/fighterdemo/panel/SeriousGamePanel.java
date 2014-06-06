@@ -1,6 +1,7 @@
 package my.punch.fazreil.fighterdemo.panel;
 
 import my.punch.fazreil.fighter.JackieChan;
+import my.punch.fazreil.fighter.SubZero;
 import my.punch.fazreil.fighterdemo.MainThread;
 import my.punch.fazreil.fighterdemo.R;
 import android.content.Context;
@@ -17,6 +18,12 @@ public class SeriousGamePanel extends GamePanel {
 			, 10, 7
 			,false,this
 			);
+	
+	private SubZero subzero = new SubZero(BitmapFactory.decodeResource(getResources(), R.drawable.subzero_walk) 
+			,160, 10
+			,150, 150
+			,10, 7, 
+			false, this);
 	
 	public SeriousGamePanel(Context context) {
 		super(context);
