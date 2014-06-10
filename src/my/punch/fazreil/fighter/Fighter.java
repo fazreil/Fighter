@@ -1,10 +1,11 @@
 package my.punch.fazreil.fighter;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import my.punch.fazreil.fighter.listener.HitListener;
 import my.punch.fazreil.fighterdemo.panel.GamePanel;
-
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -47,9 +48,12 @@ public class Fighter{
 
 	private boolean seen = false;
 	
+	private Move defaultMove;
+	
 	protected GamePanel panel;
 	
 	protected boolean isWalking = false;
+	protected LinkedList<Move> movePipeline;
 	
 	private List<HitListener> listeners = new ArrayList<HitListener>();
 
@@ -99,6 +103,16 @@ public class Fighter{
 	}
 	
 	public void update(long gameTime) {
+		if(!movePipeline.isEmpty()){
+			Move currentMove = movePipeline.getFirst();
+			movePipeline.removeFirst();
+			setBitmap(currentMove.getMoveBitmap());
+			setFrameNr(currentMove.getMoveFrame());
+		}
+		else{
+			setBitmap(getDefaultMove().getMoveBitmap());
+			setFrameNr(getDefaultMove().getMoveFrame());
+		}
 		if (gameTime > frameTicker + framePeriod) {
 			frameTicker = gameTime;
 			
@@ -133,7 +147,7 @@ public class Fighter{
 	{
 		if(isWalking)
 		{
-			if(Math.abs(spawnX-getX())<120)
+			if(Math.abs(spawnX-getX())<300)
 			{
 				if(isFacingRight())
 				{
@@ -162,6 +176,10 @@ public class Fighter{
 				}
 			}
 		}
+	}
+	
+	public void beat(){
+		
 	}
 	
 	public void resetToSpawnPoint()
@@ -200,12 +218,10 @@ public class Fighter{
 		for(HitListener listener : listeners)
 		{
 			Fighter actor = (Fighter)listener.getActor();
-			if(this.isWalking())
+			//if(this.isWalking())
 			{
 				if(getX()+collisionPoint>actor.getX())
 				{
-					Log.d("Jackie","x:"+getX()+", y"+getY());
-					Log.d("Enemy", "x:"+actor.getX()+", y"+actor.getY());
 					listener.onCollision(actor,this);
 				}
 			}
@@ -218,15 +234,6 @@ public class Fighter{
 		Rect destRect = new Rect(getX(), getY(), getX() + spriteWidth, getY()
 				+ spriteHeight);
 		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
-
-		//facing left or right
-		if(!isFacingRight)
-		{
-			p = new Paint();
-			p.setColor(Color.RED);
-			String display = this.toString()+" facing right";
-			canvas.drawText(display, 0, display.length(), 0, 150, p);
-		}
 	}
 	
 	public int getComboAnimationFrame() {
@@ -361,5 +368,28 @@ public class Fighter{
 	public void decCoolingPeriod()
 	{
 		this.coolingPeriod = this.coolingPeriod -1;
+	}
+	
+	public LinkedList<Move> getMovePipeline(){
+		return movePipeline;
+	}
+	
+	public void setMovePipeline(LinkedList<Move> movePipeline){
+		this.movePipeline = movePipeline;
+	}
+	
+	public void removeMoveFromPipeline(){
+		if(movePipeline.size()>1)
+		{
+			movePipeline.removeFirst();
+		}
+	}
+	
+	public Move getDefaultMove(){
+		return defaultMove;
+	} 
+	
+	public void setDefaultMove(Move defaultMove){
+		this.defaultMove = defaultMove;
 	}
 }

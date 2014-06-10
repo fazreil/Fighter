@@ -8,22 +8,23 @@ import android.graphics.BitmapFactory;
 
 public class SubZero extends Fighter{
 
-	public final int WALKING = R.drawable.subzero_walk;
-	public final int WALKING_FRAME = 7;
-	public final int READY = R.drawable.subzero_walk;
-	public final int READY_FRAME = 7;
-	public final int BEATHIGH = R.drawable.subzero_beathigh;
-	public final int BEATHIGH_FRAME = 4;
-	public final int BEATMED = R.drawable.subzero_beatmed;
-	public final int BEATMED_FRAME = 4;
-	public final int BEATLOW = R.drawable.subzero_beatlow;
-	public final int BEATLOW_FRAME = 5;
+	public static final int WALKING = R.drawable.subzero_walk;
+	public static final int WALKING_FRAME = 7;
+	public static final int READY = R.drawable.subzero_walk;
+	public static final int READY_FRAME = 7;
+	public static final int BEATHIGH = R.drawable.subzero_beathigh;
+	public static final int BEATHIGH_FRAME = 4;
+	public static final int BEATMED = R.drawable.subzero_beatmed;
+	public static final int BEATMED_FRAME = 4;
+	public static final int BEATLOW = R.drawable.subzero_beatlow;
+	public static final int BEATLOW_FRAME = 5;
 
 	public SubZero(Bitmap decodeResource, int i, int j, int k, int l, int m,
 			int n, boolean b, GamePanel panel) {
 		// TODO Auto-generated constructor stub
 		super(decodeResource,i,j,k,l,m,n,b,panel);
 		NAME = "Sub Zero";
+		super.collisionPoint = 70;
 	}
 
 	@Override

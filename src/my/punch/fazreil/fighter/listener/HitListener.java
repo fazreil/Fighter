@@ -1,6 +1,8 @@
-package my.punch.fazreil.fighter;
+package my.punch.fazreil.fighter.listener;
 
 import java.util.EventListener;
+
+import my.punch.fazreil.fighter.Fighter;
 
 public interface HitListener extends EventListener{
 

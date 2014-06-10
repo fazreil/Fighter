@@ -3,10 +3,10 @@ package my.punch.fazreil.fighterdemo.panel;
 import java.util.ArrayList;
 import java.util.List;
 
-import my.punch.fazreil.fighter.ActionInitiation;
-import my.punch.fazreil.fighter.HitListener;
 import my.punch.fazreil.fighter.JackieChan;
 import my.punch.fazreil.fighter.SubZero;
+import my.punch.fazreil.fighter.listener.ActionInitiation;
+import my.punch.fazreil.fighter.listener.HitListener;
 import my.punch.fazreil.fighterdemo.MainThread;
 import my.punch.fazreil.fighterdemo.R;
 import my.punch.fazreil.fighterdemo.TouchEventActions;

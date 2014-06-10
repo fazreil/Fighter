@@ -1,6 +1,9 @@
-package my.punch.fazreil.fighter;
+package my.punch.fazreil.fighter.listener;
 
 import android.util.Log;
+import my.punch.fazreil.fighter.Fighter;
+import my.punch.fazreil.fighter.JackieChan;
+import my.punch.fazreil.fighter.SubZero;
 import my.punch.fazreil.fighterdemo.panel.InteractionTestGamePanel;
 
 public class ActionInitiation implements HitListener {
@@ -48,7 +51,7 @@ public class ActionInitiation implements HitListener {
 		fighter = panel.getTea().beatHigh((SubZero)fighter);
 		fighter.setFrameNr(goodGuy.getFrameNr());
 		fighter.setWalking(true);
-		fighter.setFacing(fighter.bitmap, false);
+		fighter.setFacing(fighter.getBitmap(), false);
 				//new TouchEventActions(panel.getContext()).beatHigh((SubZero)fighter);
 	}
 	
@@ -60,7 +63,7 @@ public class ActionInitiation implements HitListener {
 	
 	public int drawCombo(int comboCount, JackieChan jackie, SubZero subzero)
 	{
-		jackie.onComboAnimation = true;
+		jackie.setOnComboAnimation(true);
 		jackie = panel.getTea().kick2(jackie);
 		jackie.setComboAnimationFrame(jackie.getFrameNr());
 		jackie.setWalking(true);
