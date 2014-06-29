@@ -103,16 +103,16 @@ public class Fighter{
 	}
 	
 	public void update(long gameTime) {
-		if(!movePipeline.isEmpty()){
-			Move currentMove = movePipeline.getFirst();
-			movePipeline.removeFirst();
-			setBitmap(currentMove.getMoveBitmap());
-			setFrameNr(currentMove.getMoveFrame());
-		}
-		else{
-			setBitmap(getDefaultMove().getMoveBitmap());
-			setFrameNr(getDefaultMove().getMoveFrame());
-		}
+//		if(!movePipeline.isEmpty()){
+//			Move currentMove = movePipeline.getFirst();
+//			movePipeline.removeFirst();
+//			setBitmap(currentMove.getMoveBitmap());
+//			setFrameNr(currentMove.getMoveFrame());
+//		}
+//		else{
+//			setBitmap(getDefaultMove().getMoveBitmap());
+//			setFrameNr(getDefaultMove().getMoveFrame());
+//		}
 		if (gameTime > frameTicker + framePeriod) {
 			frameTicker = gameTime;
 			

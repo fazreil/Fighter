@@ -36,11 +36,11 @@ public class SeriousGamePanel extends GamePanel {
 	
 	public SeriousGamePanel(Context context) {
 		super(context);
-		jack.setDefaultMove(new Move(BitmapFactory.decodeResource(this.getResources(), JackieChan.READY),JackieChan.READY_FRAME));
-		subzero.setDefaultMove(new Move(BitmapFactory.decodeResource(this.getResources(), SubZero.READY),SubZero.READY_FRAME));
-		jack.addCollisionListener(new SeriousHeroHitListener(this,subzero));
-		jack.setWalking(true);
-		subzero.setWalking(true);
+//		jack.setDefaultMove(new Move(BitmapFactory.decodeResource(this.getResources(), JackieChan.READY),JackieChan.READY_FRAME));
+//		subzero.setDefaultMove(new Move(BitmapFactory.decodeResource(this.getResources(), SubZero.READY),SubZero.READY_FRAME));
+//		jack.addCollisionListener(new SeriousHeroHitListener(this,subzero));
+//		jack.setWalking(true);
+//		subzero.setWalking(true);
 		
 		getHolder().addCallback(this);
 		// create the game loop thread

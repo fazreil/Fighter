@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 import my.punch.fazreil.fighter.Fighter;
 import my.punch.fazreil.fighter.JackieChan;
+import my.punch.fazreil.fighter.Move;
 import my.punch.fazreil.fighter.SubZero;
 import my.punch.fazreil.fighterdemo.R;
 import my.punch.fazreil.fighterdemo.panel.SeriousGamePanel;
@@ -33,12 +34,12 @@ public class SeriousHeroHitListener implements HitListener {
 	
 	@Override
 	public void onCollision(Fighter badGuy, Fighter goodGuy) {
-		// TODO Auto-generated method stub
-		this.goodGuy = (JackieChan)goodGuy;
-		this.badGuy = (SubZero)badGuy;
-		Log.d("collision", this.goodGuy.toString()+"collided with"+this.badGuy.toString());
-		onHit(this.badGuy);
-		this.goodGuy.removeCollisionListener(this.badGuy);
+//		// TODO Auto-generated method stub
+//		this.goodGuy = (JackieChan)goodGuy;
+//		this.badGuy = (SubZero)badGuy;
+//		Log.d("collision", this.goodGuy.toString()+"collided with"+this.badGuy.toString());
+//		//onHit(this.badGuy);
+//		this.goodGuy.removeCollisionListener(this.badGuy);
 	}
 
 	@Override
@@ -47,10 +48,12 @@ public class SeriousHeroHitListener implements HitListener {
 		fighter.setWalking(false);
 		fighter.setBitmap(fighter.setFacing(BitmapFactory.decodeResource(panel.getResources(), R.drawable.subzero_beatmed), false));
 		fighter.setFrameNr(4);
+		fighter.getMovePipeline().add(new Move(BitmapFactory.decodeResource(panel.getResources(), R.drawable.subzero_beatmed),SubZero.BEATMED_FRAME));
 		int move = (int) ((Math.random()*10)%moves.length);
 		panel.getJack().setBitmap(BitmapFactory.decodeResource(panel.getResources(), moves[move]));
 		panel.getJack().setFrameNr(frames[move]);
 		panel.getJack().setWalking(false);
+		panel.getJack().getMovePipeline().add(new Move(BitmapFactory.decodeResource(panel.getResources(), moves[move]),frames[move]));
 	}
 
 	@Override
