@@ -19,10 +19,10 @@ public class SubZero extends Fighter{
 	public static final int BEATLOW = R.drawable.subzero_beatlow;
 	public static final int BEATLOW_FRAME = 5;
 
-	public SubZero(Bitmap decodeResource, int i, int j, int k, int l, int m,
-			int n, boolean b, GamePanel panel) {
+	public SubZero(Bitmap decodeResource, int locX, int locY, int width, int height, int fps,
+			int frameCount, boolean isFacingRight, GamePanel panel) {
 		// TODO Auto-generated constructor stub
-		super(decodeResource,i,j,k,l,m,n,b,panel);
+		super(decodeResource,locX,locY,width,height,fps,frameCount,isFacingRight,panel);
 		NAME = "Sub Zero";
 		super.collisionPoint = 70;
 	}

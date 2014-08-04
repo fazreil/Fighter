@@ -54,8 +54,9 @@ public class Fighter{
 	
 	protected boolean isWalking = false;
 	protected LinkedList<Move> movePipeline;
+	protected boolean toDraw = true;
 	
-	private List<HitListener> listeners = new ArrayList<HitListener>();
+	protected List<HitListener> listeners = new ArrayList<HitListener>();
 
 	public Fighter() {
 		
@@ -103,16 +104,6 @@ public class Fighter{
 	}
 	
 	public void update(long gameTime) {
-//		if(!movePipeline.isEmpty()){
-//			Move currentMove = movePipeline.getFirst();
-//			movePipeline.removeFirst();
-//			setBitmap(currentMove.getMoveBitmap());
-//			setFrameNr(currentMove.getMoveFrame());
-//		}
-//		else{
-//			setBitmap(getDefaultMove().getMoveBitmap());
-//			setFrameNr(getDefaultMove().getMoveFrame());
-//		}
 		if (gameTime > frameTicker + framePeriod) {
 			frameTicker = gameTime;
 			
@@ -198,12 +189,12 @@ public class Fighter{
 	}
 	
 	public void removeCollisionListener(Fighter fighter)
-	{
-		for(HitListener listener : listeners)
+	{		
+		for(int i=0;i<listeners.size();i++)
 		{
-			if(listener.getActor() == fighter)
+			if(listeners.get(i).getActor() == fighter)
 			{
-				listeners.remove(listener);fighter.setSeen(false);
+				listeners.remove(i);fighter.setSeen(false);
 			}
 		}
 	}
@@ -391,5 +382,13 @@ public class Fighter{
 	
 	public void setDefaultMove(Move defaultMove){
 		this.defaultMove = defaultMove;
+	}
+
+	public boolean isToDraw() {
+		return toDraw;
+	}
+
+	public void setToDraw(boolean toDraw) {
+		this.toDraw = toDraw;
 	}
 }

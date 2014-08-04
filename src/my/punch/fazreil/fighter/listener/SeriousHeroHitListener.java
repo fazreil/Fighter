@@ -35,11 +35,26 @@ public class SeriousHeroHitListener implements HitListener {
 	@Override
 	public void onCollision(Fighter badGuy, Fighter goodGuy) {
 //		// TODO Auto-generated method stub
-//		this.goodGuy = (JackieChan)goodGuy;
-//		this.badGuy = (SubZero)badGuy;
-//		Log.d("collision", this.goodGuy.toString()+"collided with"+this.badGuy.toString());
-//		//onHit(this.badGuy);
+		this.goodGuy = (JackieChan)goodGuy;
+		this.badGuy = (SubZero)badGuy;
+		Log.d("collision", this.goodGuy.toString()+" collided with "+this.badGuy.toString());
+		onHit();
 //		this.goodGuy.removeCollisionListener(this.badGuy);
+	}
+	
+	public void onHit(){
+		this.badGuy.setWalking(false);
+		drawHitAnimation();
+		this.badGuy.setToDraw(false);
+		this.goodGuy.removeCollisionListener(this.badGuy);
+	}
+	
+	public void drawHitAnimation()
+	{
+		this.badGuy.setBitmap(BitmapFactory.decodeResource(panel.getResources(), R.drawable.subzero_beathigh));
+		int move = (int) ((Math.random()*10)%moves.length);
+		this.goodGuy.setBitmap(BitmapFactory.decodeResource(panel.getResources(), moves[move]));
+		this.goodGuy.setFrameNr(frames[move]);
 	}
 
 	@Override
@@ -48,7 +63,7 @@ public class SeriousHeroHitListener implements HitListener {
 		fighter.setWalking(false);
 		fighter.setBitmap(fighter.setFacing(BitmapFactory.decodeResource(panel.getResources(), R.drawable.subzero_beatmed), false));
 		fighter.setFrameNr(4);
-		fighter.getMovePipeline().add(new Move(BitmapFactory.decodeResource(panel.getResources(), R.drawable.subzero_beatmed),SubZero.BEATMED_FRAME));
+		//fighter.getMovePipeline().add(new Move(BitmapFactory.decodeResource(panel.getResources(), R.drawable.subzero_beatmed),SubZero.BEATMED_FRAME));
 		int move = (int) ((Math.random()*10)%moves.length);
 		panel.getJack().setBitmap(BitmapFactory.decodeResource(panel.getResources(), moves[move]));
 		panel.getJack().setFrameNr(frames[move]);
